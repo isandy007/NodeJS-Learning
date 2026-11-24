@@ -1,0 +1,64 @@
+
+<%- include('../partials/head') %>
+</head>
+
+<body class="bg-gray-50">
+  <%- include('../partials/nav') %>
+
+  <main class="container mx-auto bg-white shadow-lg rounded-lg p-6 mt-10 max-w-6xl">
+
+    <h2 class="text-2xl text-red-500 font-bold text-center mb-4">
+      Details of <%= home.houseName %>
+    </h2>
+
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+
+    <!-- LEFT DIV: Image only -->
+    <div class="flex items-center justify-center">
+        <div class="w-full aspect-square flex items-center justify-center">
+        <img
+            src="<%= home.photoURL %>"
+            alt="<%= home.houseName %>"
+            class="w-full h-full object-contain rounded-lg"
+        >
+        </div>
+    </div>
+
+    <!-- RIGHT DIV: Details and button -->
+    <div class="flex flex-col">
+
+        <div class="border-b pb-4">
+        <h3 class="text-lg font-bold mb-1">Description</h3>
+        <p class="text-gray-600 text-sm"><%= home.description %></p>
+        </div>
+
+        <div class="border-b py-4">
+        <h3 class="text-lg font-bold mb-1">Location</h3>
+        <p class="text-gray-600 text-sm"><%= home.location %></p>
+        </div>
+
+        <div class="border-b py-4">
+        <h3 class="text-lg font-bold mb-1">Price</h3>
+        <p class="text-green-600 font-bold">
+            $<%= home.price %> / night
+        </p>
+        </div>
+
+        <div class="border-b py-4">
+        <h3 class="text-lg font-bold mb-1">Rating</h3>
+        <div class="flex items-center">
+            <span class="text-yellow-400 text-lg">★</span>
+            <span class="ml-2 text-sm"><%= home.rating %> / 10</span>
+        </div>
+        </div>
+
+        <!-- Button stays in the RIGHT DIV -->
+         <%- include('../partials/favourites') %>
+
+    </div>
+    </div>
+
+  </main>
+</body>
+</html>

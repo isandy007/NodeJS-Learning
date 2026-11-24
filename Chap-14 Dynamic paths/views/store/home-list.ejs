@@ -1,0 +1,75 @@
+  <%- include("../partials/head")%>
+  </head>
+<body class="bg-gray-100 font-sans">
+
+  <%- include("../partials/nav") %>
+
+  <main class="container mx-auto px-4 py-8">
+
+    <!-- Page Heading -->
+    <h2 class="text-3xl text-red-500 font-bold text-center mb-8">
+      Here are our registered homes:
+    </h2>
+
+    <!-- Responsive Card Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+      <% homes.forEach (home => { %>
+
+        <!-- Home Card -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden
+                    hover:shadow-xl transition duration-300
+                    flex flex-col">
+
+          <!-- Home Image -->
+          <img
+            src="<%= home.photoURL %>"
+            alt="<%= home.houseName %>"
+            class="w-full h-52 object-cover"
+            onerror="this.onerror=null; this.src='https://placehold.co/600x400?text=Image+Unavailable';"
+          >
+
+          <!-- Home Details -->
+          <div class="p-5 flex flex-col grow">
+
+            <h3 class="text-xl font-bold text-gray-800 mb-3">
+              <%= home.houseName %>
+            </h3>
+
+            <p class="text-gray-600 mb-3">
+              📍 <%= home.location %>
+            </p>
+
+            <!-- Price and Rating -->
+            <div class="flex justify-between items-center gap-2 mt-auto">
+
+              <span class="text-lg font-bold text-red-500">
+                ₹<%= Number(home.price).toLocaleString("en-IN") %>
+                <span class="text-sm text-gray-500 font-normal">
+                  / night
+                </span>
+              </span>
+
+              <div class="flex items-center gap-1 whitespace-nowrap">
+                <span class="text-yellow-400 text-xl">★</span>
+                <span class="text-gray-700">
+                  <%= home.rating %>
+                </span>
+              </div>
+            </div>
+
+            <div class=" justify-between items-center mt-4">
+                <a class="bg-green-400 hover:bg-green-700 py-1 px-3 rounded" href="/homes/<%= home.id%>" >
+                  View details
+                </a>
+                <%- include("../partials/favourites", {home: home})%>
+           </div>
+          </div>
+        </div>
+      <% }); %>
+
+    </div>
+  </main>
+
+</body>
+</html>
